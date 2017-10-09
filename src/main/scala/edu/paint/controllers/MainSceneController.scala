@@ -1,22 +1,20 @@
 package edu.paint.controllers
 
-import javafx.fxml.Initializable
-import java.util.ResourceBundle
-import java.net.URL
-import javafx.fxml.FXML
-import javafx.scene.canvas.Canvas
-import edu.paint.model.Circle
-import java.awt.Point
-import javafx.scene.control.Button
 import java.awt.geom.Point2D
-import edu.paint.model.engine.DrawEngineImp
-import javafx.scene.canvas.GraphicsContext
-import javafx.scene.control.TextField
-import javafx.scene.control.Label
-import javafx.scene.control.ColorPicker
-import javafx.scene.control.Alert
+import java.net.URL
+import java.util.ResourceBundle
+import javafx.fxml.{FXML, Initializable}
+import javafx.scene.canvas.Canvas
 import javafx.scene.control.Alert.AlertType
+import javafx.scene.control._
 
+import edu.paint.model.Circle
+import edu.paint.model.engine.DrawEngineImp
+
+/** Main GUI Controller
+  *
+  *  @author Tarek Nawara
+  */
 class MainSceneController extends Initializable {
   @FXML
   private var canvas: Canvas = _
@@ -47,10 +45,10 @@ class MainSceneController extends Initializable {
       val position = new Point2D.Double(xTextField.getText.toDouble, yTextField.getText.toDouble)
       val properties = Map("width" -> widthTextField.getText.toDouble, "height" -> heightTextField.getText.toDouble)
       val shape = Circle(position, properties)
-      shape.strockColor = strokColorPicker.getValue()
-      shape.fillColor = fillColorPicker.getValue()
+      shape.strockColor = strokColorPicker.getValue
+      shape.fillColor = fillColorPicker.getValue
       engine.addShape(shape)
-      engine.refresh(canvas.getGraphicsContext2D())
+      engine.refresh(canvas.getGraphicsContext2D)
     } catch {
       case ex: Throwable => warningLabel.setText("Error happend")
     }
@@ -58,24 +56,24 @@ class MainSceneController extends Initializable {
 
   def undo(): Unit = {
     engine.undo()
-    val gc = canvas.getGraphicsContext2D()
-    gc.clearRect(0, 0, canvas.getWidth, canvas.getHeight);
+    val gc = canvas.getGraphicsContext2D
+    gc.clearRect(0, 0, canvas.getWidth, canvas.getHeight)
     engine.refresh(gc)
   }
 
   def redo(): Unit = {
     engine.redo()
-    val gc = canvas.getGraphicsContext2D()
-    gc.clearRect(0, 0, canvas.getWidth, canvas.getHeight);
+    val gc = canvas.getGraphicsContext2D
+    gc.clearRect(0, 0, canvas.getWidth, canvas.getHeight)
     engine.refresh(gc)
   }
 
   def save(): Unit = {
     engine.save("resources/shapes.json")
-    val alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Information Dialog");
-    alert.setContentText("Saved Successfully");
-    alert.showAndWait();    
+    val alert = new Alert(AlertType.INFORMATION)
+    alert.setTitle("Information Dialog")
+    alert.setContentText("Saved Successfully")
+    alert.showAndWait()
   }
 
   def load(): Unit = {

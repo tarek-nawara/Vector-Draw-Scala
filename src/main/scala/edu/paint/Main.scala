@@ -3,7 +3,8 @@ package edu.paint
 import scalafx.application.JFXApp
 import scalafx.scene.Scene
 import javafx.fxml.FXMLLoader
-import javafx.scene.Parent
+import javafx.scene.{Parent, Scene}
+
 import scalafx.Includes._
 import scalafx.application.JFXApp.PrimaryStage
 

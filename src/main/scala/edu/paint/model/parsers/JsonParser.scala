@@ -1,24 +1,23 @@
 package edu.paint.model.parsers
 
-import scala.collection.mutable.ListBuffer
-import edu.paint.model.Shape
-import java.io.FileInputStream
-import java.io.File
-import scala.util.parsing.json._
-import scala.io.Source
-import java.awt.Point
 import java.awt.geom.Point2D
+import java.io.{File, FileInputStream}
 import javafx.scene.paint.Color
 
-/**
- * Parser that parses a Json representation of the shapes
- * and returns all the shapes
- * @author Tarek Nawara
- */
+import edu.paint.model.Shape
+
+import scala.collection.mutable.ListBuffer
+import scala.io.Source
+
+/** Parser that parses a Json representation of the shapes
+  * and returns all the shapes.
+  *
+  * @author Tarek Nawara
+  */
 class JsonParser(path: String) {
   /**
-   * Load all the shapes from the given file
-   */
+    * Load all the shapes from the given file
+    */
   def loadShapes(): ListBuffer[Shape] = {
     val inputStream = new FileInputStream(new File(path))
     val data = Source.fromInputStream(inputStream).getLines().mkString("\n")

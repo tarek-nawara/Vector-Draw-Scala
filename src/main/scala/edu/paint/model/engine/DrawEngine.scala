@@ -25,15 +25,15 @@ trait DrawEngine {
 
   /**
    * Update shape drawn on the canvas
-   * @param old shape the shape already drawn over the canvas
-   * @param new shape the updated shape
+   * @param oldShape shape the shape already drawn over the canvas
+   * @param newShape shape the updated shape
    */
   def updateShape(oldShape: Shape, newShape: Shape)
 
   /**
    * Get list of all the shapes drawn on the canvas
    */
-  def getShapes(): ListBuffer[Shape]
+  def getShapes: ListBuffer[Shape]
 
   /**
    * Undo last action performed
